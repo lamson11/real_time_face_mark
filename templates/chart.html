@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Dashboard</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='plugins/bower_components/chartist/dist/chartist.min.css') }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            </nav>
+        </header>
+
+        <div class="page-wrapper">
+
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Dashboard</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+                                <li><a href="#" class="fw-normal"></a></li>
+                            </ol>
+                            <a href="/" style="width: 200px;"
+                                class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                                <i class="fa fa-share" style="margin-right:6px"></i> Trang chủ</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Mark</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-success js-with-mark">659</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Without Face Mask</h3>
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                                <li>
+                                    <div id="sparklinedash3"><canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                    </div>
+                                </li>
+                                <li class="ms-auto"><span class="counter text-info js-without-mark">911</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Bar chart</h3>
+                            <div class="d-md-flex">
+                                <ul class="list-inline d-flex ms-auto">
+                                    <li class="ps-3">
+                                        <h5><i class="fa fa-circle me-1 text-info"></i>Mark</h5>
+                                    </li>
+                                    <li class="ps-3">
+                                        <h5><i class="fa fa-circle me-1 text-inverse"></i>Without Mask</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="width:1200px;height:600px">
+                                <canvas id="myChart"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <h3 class="box-title mb-0">Line chart</h3>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                </div>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                </div>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                </div>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                </div>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                </div>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                </div>
+                                <div class="col-md-2 col-sm-3 col-xs-2 ms-auto">
+                                    <select style="color: red; font-size: 16px;font-weight: bold;"
+                                        class="form-select shadow-none row border-top select-type-js" name="timeOption">
+                                        <option value="DAY">Lọc theo ngày</option>
+                                        <option value="MONTH">Lọc theo tháng</option>
+                                        <option value="YEAR">Lọc theo năm</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                    <select disabled class="form-select shadow-none row border-top select-month-js"
+                                        style="color: red; font-size: 16px;font-weight: bold;" name="timeOption">
+                                        <option value="12">Tháng 12</option>
+                                        <option value="1">Tháng 1</option>
+                                        <option value="2">Tháng 2</option>
+                                        <option value="3">Tháng 3</option>
+                                        <option value="4">Tháng 4</option>
+                                        <option value="5">Tháng 5</option>
+                                        <option value="6">Tháng 6</option>
+                                        <option value="7">Tháng 7</option>
+                                        <option value="8">Tháng 8</option>
+                                        <option value="9">Tháng 9</option>
+                                        <option value="10">Tháng 10</option>
+                                        <option value="11">Tháng 11</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                    <select disabled class="form-select shadow-none row border-top select-year-js"
+                                        style="color: red; font-size: 16px;font-weight: bold;" name="timeOption">
+                                        <option value="2022">2022</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1 col-sm-3 col-xs-2 ms-auto">
+                                    <button type="button" class="btn btn-outline-success btn-choose-js">Xem đồ
+                                        thị</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <div style="width:1200px;height:600px">
+                                    <canvas id="myChart2"></canvas>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="footer text-center"> 2022 © Data Engineering <a href="#">HCMUTE</a>
+            </footer>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/app-style-switcher.js')}}"></script>
+    <script
+        src="{{url_for('static', filename='plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/waves.js')}}"></script>
+    <script src="{{url_for('static', filename='js/sidebarmenu.js')}}"></script>
+    <script src="{{url_for('static', filename='js/custom.js')}}"></script>
+    <script src="{{url_for('static', filename='plugins/bower_components/chartist/dist/chartist.min.js')}}"></script>
+    <script
+        src="{{url_for('static', filename='plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/pages/dashboards/dashboard1.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+        integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{url_for('static', filename='js/mainChart.js')}}"></script>
+</body>
+
+</html>

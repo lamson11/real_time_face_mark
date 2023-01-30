@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<title>Score</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <div
+        style="display: flex;justify-content: space-between;padding: 20px 30px; align-items: center;width: 100%;background-color: #2f323e;">
+        <div class="">
+            <h4 class="page-title" style="color: #fff; text-transform: uppercase; font-weight: bold; font-size: 24px;">
+                Thống kê</h4>
+        </div>
+        <div class="">
+            <div class="d-md-flex">
+                <a href="/" style="width: 200px;"
+                    class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                    <i class="fa fa-share" style="margin-right:6px"></i> Trang chủ</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="item">
+            <div class="accurracy-chart" style="width:600px;height:500px;display: inline-block;">
+                <canvas id="accurracy" style="width:100%;max-width:600px"></canvas>
+            </div>
+            <div class="f1-score-chart" style="width:600px;height:500px;display: inline-block">
+                <canvas id="f1-score" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+        <div class="item">
+            <div class="precision-chart" style="width:600px;height:500px;display: inline-block;">
+                <canvas id="precision" style="width:100%;max-width:600px"></canvas>
+            </div>
+            <div class="recall-chart" style="width:600px;height:500px;display: inline-block">
+                <canvas id="recall" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{url_for('static', filename='plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script>
+        const url = "http://127.0.0.1";
+        const port = 30701;
+        let accuracyChart;
+        let f1ScoreChart;
+        let precisionChart;
+        let recallChart;
+        callAPI();
+        setInterval(callAPI, 10000);
+        function callAPI() {
+            jQuery.ajax({
+                url: url + ":" + port + "/ui/score",
+                type: 'GET',
+                success: function (data) {
+                    let accuracy = Number(data["accuracy"])
+                    let f1 = Number(data["f1-score"])
+                    let precision = Number(data["precision"])
+                    let recall = Number(data["recall"])
+                    console.log(accuracy);
+                    pieChartAccuracy(accuracy);
+                    pieChartF1Score(f1);
+                    pieChartPrecistion(precision);
+                    pieChartRecall(recall);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        function pieChartAccuracy(accuracy) {
+            var xValues = ["accuracy", "lost"];
+            var yValues = [accuracy, 1 - accuracy];
+            var barColors = [
+                "#d1d347",
+                "#206c21"
+            ];
+            if (accuracyChart !== undefined) {
+                accuracyChart.destroy();
+            }
+
+            accuracyChart = new Chart("accurracy", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Accuracy For FaceMark"
+                    }
+                }
+            });
+        }
+
+        function pieChartF1Score(f1) {
+            var xValues = ["f1-score", "lost"];
+            var yValues = [f1, 1 - f1];
+            var barColors = [
+                "#2b5797",
+                "#e8c3b9",
+                "#1e7145"
+            ];
+            if (f1ScoreChart !== undefined) {
+                f1ScoreChart.destroy();
+            }
+
+            f1ScoreChart = new Chart("f1-score", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "F1-score For FaceMark"
+                    }
+                }
+            });
+        }
+
+        function pieChartPrecistion(precision) {
+            var xValues = ["precision", "lost"];
+            var yValues = [precision, 1 - precision];
+            var barColors = [
+                "#b91d47",
+                "#1e7145"
+            ];
+            if (precisionChart !== undefined) {
+                precisionChart.destroy();
+            }
+
+            precisionChart = new Chart("precision", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Precision For FaceMark"
+                    }
+                }
+            });
+        }
+
+        function pieChartRecall(recall) {
+            var xValues = ["recall", "lost"];
+            var yValues = [recall, 1 - recall];
+            var barColors = [
+                "#2b5797",
+                "#cf6d08"
+            ];
+            if (recallChart !== undefined) {
+                recallChart.destroy();
+            }
+
+            recallChart = new Chart("recall", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Recall For FaceMark"
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
+</body>
+
+</html>

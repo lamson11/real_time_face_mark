@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognizate Face</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/css/fileinput.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/temp.css') }}">
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container" style="margin-top:200px">
+        <div class="card border-0 shadow my-5">
+            <div class="card-body">
+                {% if filename %}
+                <div class="result_title" style="display: flex; justify-content: center; align-items: center;"><b>Kết
+                        quả nhận diện: </b>
+                    <span class="result_id" style="margin-left:4px;font-size: 20px;text-transform: uppercase;">
+                        {{result}}</span>
+                </div>
+                <hr>
+                <img src="{{ url_for('display_image', filename=filename) }}" style=" display: block; 
+                    margin-left: auto; 
+                    margin-right: auto;
+                    width: 300px;
+                    object-fit: contain;">
+
+                <hr>
+                {% endif %}
+                {% if lable %}
+                <form action="/user-confirm-label" method="post" class="form-confirm">
+                    <input type="text" hidden name="predict" width="500px" value={{lable}}>
+                    <div class="form-check">
+                        <input class="form-check-input" name="key" value="True" type="radio">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Đúng
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="key" value="False" type="radio">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Sai
+                        </label>
+                    </div>
+                    <div class="block-btn">
+                        <button type=" submit" class="btn btn-outline-success"><i class="fa fa-share"></i> Xác
+                            nhận thông tin</button>
+                    </div>
+                </form>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/js/plugins/sortable.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/themes/fas/theme.min.js"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/fileInput.js') }}"></script>
+</body>
+
+</html>
